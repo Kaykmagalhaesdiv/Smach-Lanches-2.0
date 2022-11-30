@@ -37,12 +37,13 @@
             <div id="buttonsAsideRequest">
               <input type="radio" name="tradePage" id="requestButton" checked>
               <label for="requestButton">Pedidos</label>
-              <div class="side"></div>
+              <div id="sideRequest" class="side"></div>
             </div>
 
             <div id="buttonsAsideProduct">
               <input type="radio" name="tradePage" id="productButton">
               <label for="productButton">Produtos</label>
+              <div id="sideProduct" class="side" hidden></div>
             </div>
           </div>
 
@@ -55,7 +56,7 @@
       </div>
 
       <!--1 Layout-->
-      <section id="requests" class="col-9" hidden>
+      <section id="requests" class="col-9" >
         <header>
           <div class="title_content mt-3">
             <div class="title_header mb-3">
@@ -135,7 +136,7 @@
       <!--1 Layout-->
 
       <!--2 layout-->
-      <section id="newRequest" class="col-9" hidden >
+      <section id="newRequest" class="col-9" hidden>
         <header>
           <div class="box-newRequest mt-3 mb-5">
             <h2 class="mb-3">Novo pedido</h2>
@@ -249,7 +250,7 @@
       <!-- FIM 2 layout-->
 
       <!--3 layout-->
-      <section id="products" class="col-9">
+      <section id="products" class="col-9" hidden>
         <header>
           <div class="box-newRequest mt-3 mb-5">
             <h2 class="mb-3">Todos os produtos</h2>
@@ -258,25 +259,25 @@
         <div id="edit-buttons">
           <div class="search-for-product">
             <div class="inputs-products mb-3">
-              <label class="input-label" for="code-product"
+              <label class="input-label" for="codeProducts"
                 >Cód. produto<br />
-                <input id="codeProducts" class="newBtnCodeProduct" name="code-products" type="number" placeholder="Código do produto"
+                <input id="codeProducts" class="newBtnCodeProduct btnVerificar" name="code-products" type="number" placeholder="Código do produto"
                 />
               </label>
 
-              <label for="name-products" class="label-product input-label label-width"
+              <label for="nameProducts" class="label-product input-label label-width"
               >Produto<br />
-              <input  id="name-product" class="product-name" name="code-products" type="text" placeholder="Nome do produto"
+              <input  id="nameProducts" class="product-name btnVerificar" name="code-products" type="text" placeholder="Nome do produto"
               />
             </label>
 
-            <label for="price-product" class="label-price input-label"
+            <label for="priceProducts" class="label-price input-label"
             >Preço<br />
             <input
               
-              id="price-product"
+              id="priceProducts"
               name="code-products"
-              class="product-price"
+              class="product-price btnVerificar"
               type="number"
               placeholder="R$ 00,00"
             />
@@ -285,6 +286,9 @@
             </div>
           </div>
           <div class="box-button-save-product">
+            <button class="btn-config btn-cancel btn-cancel-product" hidden>
+              <img src="assets/img/excluir.svg" alt="cancelar Produto"> Cancelar
+            </button>
             <button disabled id="save-product" class="btn-save-product btn-config mt-3 btn-inactive">
               <img src="assets/img/Adicionar.svg" alt="Imagem do sinal Mais, para adicionar produtos." /> Salvar Produto
             </button>
@@ -302,7 +306,7 @@
               </thead>
 
               <tbody id="table-body">
-
+                
               </tbody>
             </table>
       </section>
