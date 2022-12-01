@@ -18,13 +18,13 @@ export default class ProductServices{
 
     async atualizarProduct(id,product){
     let response = await fetch(`${URL}/produto/${id}/atualizar`,{
-        method:"POST",
+        method:'POST',
         headers:{'Content-type': "application/json"},
-        body: JSON.stringify(product)
+        body: product
     }).then(response =>{
         if(response.ok){
             return response.json().then(jsonData =>{
-                return jsonData
+                return console.log(jsonData)
             })
         }
         throw new Error("Erro ao atualizar o produto!")
@@ -70,7 +70,7 @@ export default class ProductServices{
             headers:{'Content-type': "application/json"}
         }).then(response =>{
             return response.json().then(jsonData =>{
-                return jsonData
+                return teste = jsonData;
             })
         })
     }

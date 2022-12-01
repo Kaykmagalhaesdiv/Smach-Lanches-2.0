@@ -1,83 +1,4 @@
-import {btnAddProduct,btnCancel,btnCancelProduct,btnCheckedSideProduct,btnCheckedSideRequest,btnDelete,
-  btnFind,btnNewRequest,btnPrint,btnSave,btnSaveProduct,btnVerificar,dateTimer,firstPage,imgBody,imgFirstPage,inputCodProduct,
-  inputFindProduct,inputNameProduct,inputPrice,inputPriceProduct,inputProduct,inputQuantidade,resultPrice,secondPage,sideProduct,sideRequest,tableBody,tableBodyStatus,thirdPage} from "../variable/variables.mjs";
-import ProductServices from "../services/services.mjs";
-import {viwNewProduct} from "../script.js";
-// export let totalSum = 0;
-// export let arrayProductOrder = [];
-// export let arrayOrders = [];
-// let orderNumber = 1;
-
-
-// export const newProductOrder = () => {
-//     imgBody.setAttribute("hidden", "true");
-  
-//     arrayProductOrder.push({
-//       cod: inputFindProduct.value,
-//       productName: inputProduct.value,
-//       qty: inputQuantidade.value,
-//       price: parseInt(inputPrice.value),
-//     }); // Fill the empty array with cetted data in the inputs
-  
-//     inputFindProduct.value = "";
-//     inputProduct.value = "";
-//     inputQuantidade.value = "";
-//     inputPrice.value = "";
-//     // Then return the default inputs
-  
-//     let mapPrice = arrayProductOrder.map((valor) => {
-//       return valor.price;
-//     });
-  
-    
-//     totalSum = mapPrice.reduce((total, next) => {
-//       return (total += next);
-//     });
-  
-//     resultPrice.removeAttribute("hidden");
-//     resultPrice.innerHTML = `<h4>Total do pedido: <strong>${totalSum.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</strong:</h4>`;
-//     alertify.success('Produto adicionado!')
-//     btnSave.removeAttribute("class", "btn-save-inactive");
-//     btnSave.removeAttribute("disabled", "true");
-//     btnSave.setAttribute("class", "btn-save btn-config btn-save-active");
-  
-//     if (inputFindProduct.value == "" || inputQuantidade.value == "") {
-//       btnAddProduct.removeAttribute("class", "btn-active");
-//       btnAddProduct.setAttribute("class","btn-inactive btn-save-product btn-config mt-3");
-//       btnAddProduct.setAttribute("disabled", "true");
-//     }
-    
-//     tableOrderView();
-//     return false;
-//   };
-
-// export const tableOrderView = () => {
-//     tableBody.innerHTML = "";
-//     arrayProductOrder.forEach((item) => {
-//       tableBody.innerHTML += `<tr>
-//                             <td>${item.cod}</td>
-//                             <td>${item.productName}</td>
-//                             <td>${it em.qty}</td>
-//                             <td>R$ ${item.price}</td>
-//                           </tr>`;
-//     }); // It loops through the filled array and puts the data in the HTML
-//   };
-
-export const updateProduct = async (id,product) =>{
-  tableBody.innerHTML = ''
-  const productServices = new ProductServices()
- productServices.atualizarProduct(id,product)
-  let productsAll = await productServices.getAllProducts()
-  viwNewProduct(productsAll)
-}
-
-export const deleteProducts = async (id) =>{
-  tableBody.innerHTML = ''
-  const productServices = new ProductServices()
-  productServices.deleteProduct(id)
-  let productsAll = await productServices.getAllProducts()
-  viwNewProduct(productsAll)
-}
+import {btnDelete,btnSave,firstPage,inputFindProduct,resultPrice,secondPage,tableBody,tableBodyStatus,btnCheckedSideProduct,sideProduct,sideRequest,thirdPage} from "../variable/variables.mjs";
 
 export const tradePage = () => {
     firstPage.setAttribute("hidden", "true");
@@ -167,108 +88,25 @@ export let viewBtn = () =>{
   };
 } // Appear and disappear delete button;
 
-// export let saveOrder = () => {
-//   let status = document.querySelector('input[name="option"]:checked').value;
-//   secondPage.setAttribute("hidden", "true");
-//   firstPage.removeAttribute("hidden");
+export const checkSelected = () => {
+  if (btnCheckedSideProduct.checked == true) {
+    // Botões side!
+    sideRequest.setAttribute("hidden", "true")
+    sideProduct.removeAttribute("hidden");
 
-//   imgFirstPage.setAttribute("hidden", "");
-//   tableBodyStatus.innerHTML = "";
+    // visualização da page
+    firstPage.setAttribute("hidden", 'true');
+    secondPage.setAttribute("hidden", 'true');
+    thirdPage.removeAttribute("hidden")
+  } else {
+    //Botões side!
+    sideProduct.setAttribute("hidden", "true");
+    sideRequest.removeAttribute("hidden")
 
-//   arrayOrders.push({
-//     orderNumber: (orderNumber += 1),
-//     itens: arrayProductOrder,
-//     type: status,
-//     total: totalSum,
-//     status: "Recebido",
-//   }); // Added new items to empty array;
-//   alertify.success('Pedido Salvo!')
-//   viewTable(arrayOrders);
-// };
+    // visualização da page
+    thirdPage.setAttribute("hidden", "true");
+    firstPage.removeAttribute("hidden")
 
-// export let filterCheckbox = () =>{
-//   let checked = document.querySelectorAll('input[name="check"]:checked');
-//   let checkedMarked = [];
-//   checked.forEach((value) =>{
-//     checkedMarked.push(value.id)
-//   }); // return id of CheckBox to empy Array
+  }
+}
 
-//   let filtrado = checkedMarked.map((value) =>{
-//     return value
-//   })
-
-//   arrayOrders = arrayOrders.filter((received) =>{
-//     const select = filtrado.some((checked) => checked == received.orderNumber);
-//     if(!select){
-//       return received
-//     }
-//   })
-
-//   let valueFilterType = document.getElementById("filter-types");
-//   valueFilterType.value = '';
-
-//   let valueFilterStatus = document.getElementById("filter-status");
-//   valueFilterStatus.value = '';
-//   alertify.error('Pedido Excluido(s)!')
-//   viewTable(arrayOrders);
-// }
-
-// export let viewQuestion = () =>{
-//   alertify.confirm("Excluir pedido", "Você deseja realmente excluir um pedido?.",
-//    function(){
-//     filterCheckbox();
-//     },
-//     function(){
-//     });
-// }
-
-// let resultFilterType = '';
-// export let filterType = () => {
-//   let valueFilterType = document.getElementById("filter-types").value;
-//   resultFilterType = valueFilterType
-//   return arrayOrders.filter((values) => {
-//     if (values.type == valueFilterType) {
-//       return values;
-//     } else if(valueFilterType == ''){
-//       return arrayOrders;
-//     }
-//   });
-// };
-
-
-// let resultFilterStatus = ''
-// export let filterStatus = () =>{
-//   let valueFilterStatus = document.getElementById("filter-status").value;
-//   resultFilterStatus = valueFilterStatus
-//   return arrayOrders.filter((values) => {
-//     if (values.status == valueFilterStatus) {
-//       return values;
-//     }
-//       else if(valueFilterStatus == ''){
-//       return arrayOrders;
-//     }
-//   });
-// }
-
-// export let filter = () => {
-//   let arrFilterType = filterType();
-//   viewTable(arrFilterType)
-// };
-
-// export let filters = () =>{
-//   let arrFilterStatus = filterStatus();
-//   viewTable(arrFilterStatus)
-// }
-
-// export function printIt() {
-//   let contentPrint = document.getElementById('table').innerHTML;
-//   var win = window.open();
-//   self.focus();
-//   win.document.open();
-//   win.document.write('<'+'html'+'><'+'body'+'>');
-//   win.document.write(contentPrint);
-//   win.document.write('<'+'/body'+'><'+'/html'+'>');
-//   win.document.close();
-//   win.print();
-//   win.close();
-// } // function responsible for printing the screen when clicking on the "Print" button

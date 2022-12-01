@@ -32,4 +32,7 @@ export let sideRequest = document.querySelector("#sideRequest")
 
 export let imgBody = document.getElementById("img-hidden");
 export let imgFirstPage = document.getElementById("img-hidden-first");
+
+let dataHora = new Date().toLocaleString();
+dateTimer.innerHTML = dataHora
 // Elements HTML To use;
