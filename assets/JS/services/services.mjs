@@ -8,11 +8,11 @@ export default class ProductServices{
         body:JSON.stringify(product)
     }).then(response =>{
         if(response.ok){ 
-            return alert("Produto cadastrado!")         
+            return alertify.success('Produto cadastrado!');         
         }
         throw new Error("Produto já cadastrado!")
     }).catch(err =>{
-        alert(err.message)
+        alertify.error(err.message);
     })
     }
 
@@ -21,39 +21,47 @@ export default class ProductServices{
         method:"POST",
         headers:{'Content-type': "application/json"},
         body: JSON.stringify(product)
+    }).then(response =>{
+        if(response.ok){
+            return response.json().then(jsonData =>{
+                return jsonData
+            })
+        }
+        throw new Error("Erro ao atualizar o produto!")
+    }).catch(err =>{
+        alertify.error(err.message)
     })
-    if(response.ok){
-        let data = await response.json()
-        return data;
-    }
-        return await response.text()
     }
 
     async deleteProduct(id){
         let response = await fetch(`${URL}/produto/${id}/deletar`,{
             method:"POST"
+        }).then(response =>{
+            if(response.ok){
+                alertify.success("Produto excluido com sucesso!")
+                return response.json().then(jsonData =>{
+                    return jsonData
+                })
+            }
+            throw new Error("Ocorreu um erro ao excluir o produto!")
+        }).catch(err =>{
+            alertify.error(err.message)
         })
-        if(response.ok()){
-            await response.text()
-        } else{
-            console.log(response.text())
-        }
+        
     }
 
     async getAllProducts(){
-        let response = await fetch(`${URL}/produtos/todos`,{
+        const response = await fetch(`${URL}/produto/todos`,{
             method:"GET",
             headers:{'Content-type': "application/json"}
-        }).then(response =>{
-            return response.json().then(jsonData =>{
-                return  jsonData;
-            })
         })
-        if(response.ok()){
-            await response.text()
-        } else{
-            console.log(response.text())
-        }
+
+        const data = await response.json();
+        let allProducts = data.map(values =>{
+            return values
+        })
+        
+        return allProducts
     }
 
     async getProductForId(id){

@@ -1,5 +1,8 @@
-import variables from "../variable/variables.mjs";
-
+import {btnAddProduct,btnCancel,btnCancelProduct,btnCheckedSideProduct,btnCheckedSideRequest,btnDelete,
+  btnFind,btnNewRequest,btnPrint,btnSave,btnSaveProduct,btnVerificar,dateTimer,firstPage,imgBody,imgFirstPage,inputCodProduct,
+  inputFindProduct,inputNameProduct,inputPrice,inputPriceProduct,inputProduct,inputQuantidade,resultPrice,secondPage,sideProduct,sideRequest,tableBody,tableBodyStatus,thirdPage} from "../variable/variables.mjs";
+import ProductServices from "../services/services.mjs";
+import {viwNewProduct} from "../script.js";
 // export let totalSum = 0;
 // export let arrayProductOrder = [];
 // export let arrayOrders = [];
@@ -7,19 +10,19 @@ import variables from "../variable/variables.mjs";
 
 
 // export const newProductOrder = () => {
-//     variables.imgBody.setAttribute("hidden", "true");
+//     imgBody.setAttribute("hidden", "true");
   
 //     arrayProductOrder.push({
-//       cod: variables.inputFindProduct.value,
-//       productName: variables.inputProduct.value,
-//       qty: variables.inputQuantidade.value,
-//       price: parseInt(variables.inputPrice.value),
+//       cod: inputFindProduct.value,
+//       productName: inputProduct.value,
+//       qty: inputQuantidade.value,
+//       price: parseInt(inputPrice.value),
 //     }); // Fill the empty array with cetted data in the inputs
   
-//     variables.inputFindProduct.value = "";
-//     variables.inputProduct.value = "";
-//     variables.inputQuantidade.value = "";
-//     variables.inputPrice.value = "";
+//     inputFindProduct.value = "";
+//     inputProduct.value = "";
+//     inputQuantidade.value = "";
+//     inputPrice.value = "";
 //     // Then return the default inputs
   
 //     let mapPrice = arrayProductOrder.map((valor) => {
@@ -31,17 +34,17 @@ import variables from "../variable/variables.mjs";
 //       return (total += next);
 //     });
   
-//     variables.resultPrice.removeAttribute("hidden");
-//     variables.resultPrice.innerHTML = `<h4>Total do pedido: <strong>${totalSum.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</strong:</h4>`;
+//     resultPrice.removeAttribute("hidden");
+//     resultPrice.innerHTML = `<h4>Total do pedido: <strong>${totalSum.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</strong:</h4>`;
 //     alertify.success('Produto adicionado!')
-//     variables.btnSave.removeAttribute("class", "btn-save-inactive");
-//     variables.btnSave.removeAttribute("disabled", "true");
-//     variables.btnSave.setAttribute("class", "btn-save btn-config btn-save-active");
+//     btnSave.removeAttribute("class", "btn-save-inactive");
+//     btnSave.removeAttribute("disabled", "true");
+//     btnSave.setAttribute("class", "btn-save btn-config btn-save-active");
   
-//     if (variables.inputFindProduct.value == "" || variables.inputQuantidade.value == "") {
-//       variables.btnAddProduct.removeAttribute("class", "btn-active");
-//       variables.btnAddProduct.setAttribute("class","btn-inactive btn-save-product btn-config mt-3");
-//       variables.btnAddProduct.setAttribute("disabled", "true");
+//     if (inputFindProduct.value == "" || inputQuantidade.value == "") {
+//       btnAddProduct.removeAttribute("class", "btn-active");
+//       btnAddProduct.setAttribute("class","btn-inactive btn-save-product btn-config mt-3");
+//       btnAddProduct.setAttribute("disabled", "true");
 //     }
     
 //     tableOrderView();
@@ -49,38 +52,54 @@ import variables from "../variable/variables.mjs";
 //   };
 
 // export const tableOrderView = () => {
-//     variables.tableBody.innerHTML = "";
+//     tableBody.innerHTML = "";
 //     arrayProductOrder.forEach((item) => {
-//       variables.tableBody.innerHTML += `<tr>
+//       tableBody.innerHTML += `<tr>
 //                             <td>${item.cod}</td>
 //                             <td>${item.productName}</td>
-//                             <td>${item.qty}</td>
+//                             <td>${it em.qty}</td>
 //                             <td>R$ ${item.price}</td>
 //                           </tr>`;
 //     }); // It loops through the filled array and puts the data in the HTML
 //   };
 
+export const updateProduct = async (id,product) =>{
+  tableBody.innerHTML = ''
+  const productServices = new ProductServices()
+ productServices.atualizarProduct(id,product)
+  let productsAll = await productServices.getAllProducts()
+  viwNewProduct(productsAll)
+}
+
+export const deleteProducts = async (id) =>{
+  tableBody.innerHTML = ''
+  const productServices = new ProductServices()
+  productServices.deleteProduct(id)
+  let productsAll = await productServices.getAllProducts()
+  viwNewProduct(productsAll)
+}
+
 export const tradePage = () => {
-    variables.firstPage.setAttribute("hidden", "true");
-    variables.secondPage.removeAttribute("hidden");
-    variables.resultPrice.setAttribute("hidden", "true");
+    firstPage.setAttribute("hidden", "true");
+    secondPage.removeAttribute("hidden");
+    resultPrice.setAttribute("hidden", "true");
   
-    variables.tableBodyStatus.innerHTML = "";
-    variables.inputFindProduct.value = "";
-    variables.tableBody.innerHTML = "";
-    variables.btnSave.removeAttribute('class', 'btn-save-inactive')
-    variables.btnSave.setAttribute('class', 'btn-save btn-config btn-save-inactive');
-    variables.btnSave.setAttribute('disabled','true')
+    tableBodyStatus.innerHTML = "";
+    inputFindProduct.value = "";
+    tableBody.innerHTML = "";
+    btnSave.removeAttribute('class', 'btn-save-inactive')
+    btnSave.setAttribute('class', 'btn-save btn-config btn-save-inactive');
+    btnSave.setAttribute('disabled','true')
   }; // Purpose of function: Change page view and return empty order array and inputs;
 
 export let viewTable = (arrView) => {
-    variables.tableBodyStatus.innerHTML = "";
+    tableBodyStatus.innerHTML = "";
     arrView.forEach((element) => {
       let html = "";
       element.itens.forEach((item) => {
         html += `${item.qty + "-" + item.productName + "<br>"}`;
       });
-      variables.tableBodyStatus.innerHTML += `<tr>
+      tableBodyStatus.innerHTML += `<tr>
                                   <td> <input name="check" id="${element.orderNumber}" type="checkbox" class="checkClass"/> ${element.orderNumber}</td>
                                   <td>${html}</td>
                                   <td>${element.type}</td>
@@ -141,20 +160,20 @@ export let viewBtn = () =>{
   })
   if(valuesCheckeds.length > 0){
     valueFilter.setAttribute('hidden','true');
-    variables.btnDelete.removeAttribute('hidden','true')
+    btnDelete.removeAttribute('hidden','true')
   } else{
     valueFilter.removeAttribute('hidden');
-    variables.btnDelete.setAttribute('hidden','true')
+    btnDelete.setAttribute('hidden','true')
   };
 } // Appear and disappear delete button;
 
 // export let saveOrder = () => {
 //   let status = document.querySelector('input[name="option"]:checked').value;
-//   variables.secondPage.setAttribute("hidden", "true");
-//   variables.firstPage.removeAttribute("hidden");
+//   secondPage.setAttribute("hidden", "true");
+//   firstPage.removeAttribute("hidden");
 
-//   variables.imgFirstPage.setAttribute("hidden", "");
-//   variables.tableBodyStatus.innerHTML = "";
+//   imgFirstPage.setAttribute("hidden", "");
+//   tableBodyStatus.innerHTML = "";
 
 //   arrayOrders.push({
 //     orderNumber: (orderNumber += 1),

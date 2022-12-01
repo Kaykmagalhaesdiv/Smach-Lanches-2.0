@@ -93,6 +93,18 @@
     
 }
 
+.btn-delete,
+.btn-edit{
+    border: none;
+    background-color: #FFF;
+    border-radius: 5px;
+}
+
+.btn-edit:hover{
+    background-color: #ccd3af52;
+    transition: background-color .5s;
+}
+
 /*END BUTTONS*/
 
 

@@ -1,68 +1,35 @@
-let firstPage = document.getElementById("requests");
-let secondPage = document.getElementById("newRequest");
-let thirdPage = document.querySelector("#products")
+export let firstPage = document.getElementById("requests");
+export let secondPage = document.getElementById("newRequest");
+export let thirdPage = document.querySelector("#products")
 
-let btnNewRequest = document.getElementById("btn-novo-pedido");
-let btnFind = document.getElementById("btn-find");
-let btnAddProduct = document.getElementById("btn-add");
-let btnSave = document.getElementById("btn-save-id");
-let btnCancel = document.getElementById("btn-cancel");
-let btnDelete = document.getElementById("btn-delete");
-let btnPrint = document.querySelector("#print")
-let btnCheckedSideRequest = document.querySelector("#requestButton");
-let btnCheckedSideProduct = document.querySelector("#productButton");
-let btnSaveProduct = document.querySelector("#save-product")
-let btnCancelProduct = document.querySelector(".btn-cancel-product");
-let btnVerificar = document.querySelectorAll(".btnVerificar")
+export let btnNewRequest = document.getElementById("btn-novo-pedido");
+export let btnFind = document.getElementById("btn-find");
+export let btnAddProduct = document.getElementById("btn-add");
+export let btnSave = document.getElementById("btn-save-id");
+export let btnCancel = document.getElementById("btn-cancel");
+export let btnDelete = document.getElementById("btn-delete");
+export let btnPrint = document.querySelector("#print")
+export let btnCheckedSideRequest = document.querySelector("#requestButton");
+export let btnCheckedSideProduct = document.querySelector("#productButton");
+export let btnSaveProduct = document.querySelector("#save-product")
+export let btnCancelProduct = document.querySelector(".btn-cancel-product");
+export let btnVerificar = document.querySelectorAll(".btnVerificar")
 
-let inputQuantidade = document.getElementById("amount-product");
-let inputProduct = document.getElementById("name-product");
-let inputPrice = document.getElementById("price-product");
-let inputFindProduct = document.getElementById("codeProduct");
-let inputCodProduct = document.querySelector("#codeProducts");
-let inputNameProduct = document.querySelector("#nameProducts")
-let inputPriceProduct = document.querySelector("#priceProducts");
+export let inputQuantidade = document.getElementById("amount-product");
+export let inputProduct = document.getElementById("name-product");
+export let inputPrice = document.getElementById("price-product");
+export let inputFindProduct = document.getElementById("codeProduct");
+export let inputCodProduct = document.querySelector("#codeProducts");
+export let inputNameProduct = document.querySelector("#nameProducts")
+export let inputPriceProduct = document.querySelector("#priceProducts");
 
-let tableBody = document.getElementById("table-body");
-let tableBodyStatus = document.getElementById("table-body-result");
-let resultPrice = document.getElementById("result");
-let dateTimer = document.getElementById('date');
-let sideProduct = document.querySelector("#sideProduct") 
-let sideRequest = document.querySelector("#sideRequest")
+export let tableBody = document.getElementById("table-body-products");
+export let tableBodyStatus = document.getElementById("table-body-result");
+export let resultPrice = document.getElementById("result");
+export let dateTimer = document.getElementById('date');
+export let sideProduct = document.querySelector("#sideProduct") 
+export let sideRequest = document.querySelector("#sideRequest")
 
-let imgBody = document.getElementById("img-hidden");
-let imgFirstPage = document.getElementById("img-hidden-first");
+export let imgBody = document.getElementById("img-hidden");
+export let imgFirstPage = document.getElementById("img-hidden-first");
 // Elements HTML To use;
-
-export default{
-    btnVerificar,
-    btnCancelProduct,
-    btnSaveProduct,
-    inputPriceProduct,
-    inputNameProduct,
-    inputCodProduct,
-    thirdPage,
-    sideRequest,
-    sideProduct,
-    btnCheckedSideProduct,
-    btnCheckedSideRequest,
-    firstPage,
-    secondPage,
-    btnNewRequest,
-    btnFind,
-    btnAddProduct,
-    btnSave,
-    btnCancel,
-    btnDelete,
-    inputQuantidade,
-    inputProduct,
-    inputPrice,
-    inputFindProduct,
-    tableBody,
-    tableBodyStatus,
-    resultPrice,
-    dateTimer,
-    imgBody,
-    imgFirstPage,
-    btnPrint
-}
