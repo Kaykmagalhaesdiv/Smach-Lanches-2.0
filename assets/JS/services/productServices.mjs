@@ -1,4 +1,5 @@
 const URL = "http://localhost:3000"
+import { loader,btnAddProduct} from "../variable/variables.mjs"
 
 export default class ProductServices{
   async saveProduct(product){
@@ -6,12 +7,21 @@ export default class ProductServices{
         method:'POST',
         headers:{'Content-type': "application/json"},
         body:JSON.stringify(product)
-    }).then(response =>{
-        if(response.ok){ 
-            return alertify.success('Produto cadastrado!');         
-        }
-        throw new Error("Produto já cadastrado!")
+    }).then(async response =>{
+        loader.removeAttribute("hidden");
+        await new Promise((resolve,rejected) =>{
+            setTimeout(() =>{
+                if(response.ok){
+                    resolve() 
+                    loader.setAttribute("hidden",'true');
+                    return alertify.success('Produto cadastrado!');         
+                }
+                rejected(new Error("Produto já cadastrado!"))
+            },2000)
+        })
+        
     }).catch(err =>{
+        loader.setAttribute("hidden",'true');
         alertify.error(err.message);
     })
     }
@@ -20,11 +30,12 @@ export default class ProductServices{
     let response = await fetch(`${URL}/produto/${id}/atualizar`,{
         method:'POST',
         headers:{'Content-type': "application/json"},
-        body: product
+        body: JSON.stringify(product)
     }).then(response =>{
         if(response.ok){
+            alertify.success("Produto Atualizado com sucesso!")
             return response.json().then(jsonData =>{
-                return console.log(jsonData)
+                return jsonData
             })
         }
         throw new Error("Erro ao atualizar o produto!")
@@ -47,7 +58,6 @@ export default class ProductServices{
         }).catch(err =>{
             alertify.error(err.message)
         })
-        
     }
 
     async getAllProducts(){
@@ -57,6 +67,7 @@ export default class ProductServices{
         })
 
         const data = await response.json();
+        
         let allProducts = data.map(values =>{
             return values
         })
@@ -65,13 +76,22 @@ export default class ProductServices{
     }
 
     async getProductForId(id){
-        let response = await fetch(`${URL}/produto/${id}`,{
+        const productForId = await fetch(`${URL}/produto/${id}`,{
             method:"GET",
             headers:{'Content-type': "application/json"}
-        }).then(response =>{
-            return response.json().then(jsonData =>{
-                return teste = jsonData;
-            })
         })
+
+        if(!productForId.ok){
+            alertify.error('Produto não encontrado!');
+        }else{
+            alertify.success("Produto encontrado!")
+        }
+        const dataId = await productForId.json();
+       
+        let productsId = dataId.map(elements =>{
+            return elements
+        })
+
+        return productsId;
     }
 }

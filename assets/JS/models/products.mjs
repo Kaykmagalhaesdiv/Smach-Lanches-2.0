@@ -4,7 +4,7 @@ export default class Product{
     preco;
 
     constructor(id,name,price){
-        this.id = Number.parseInt(id);
+        this.id = Number.parseInt(id)
         this.nome = name;
         this.preco = Number.parseFloat(price)
     }

@@ -24,8 +24,12 @@
     <link rel="stylesheet" href="assets/Style/newRequest.css" />
     <link rel="stylesheet" href="assets/alertifyJS/css/alertify.css">
     <link rel="stylesheet" href="assets/Style/products.css">
+    <link rel="stylesheet" href="assets/Style/loader.css">
   </head>
-  <body>
+  <body >
+    <div class="screenLoader" hidden>
+      <span class="loader"></span>
+    </div>
     <main id="principal" class="col-12 row">
       <div class="content col-3 row">
         <aside id="menu_lateral">
@@ -251,7 +255,7 @@
 
       <!--3 layout-->
       <section id="products" class="col-9" hidden>
-        <header>
+        <header >
           <div class="box-newRequest mt-3 mb-5">
             <h2 class="mb-3">Todos os produtos</h2>
           </div>
@@ -272,7 +276,7 @@
             </label>
 
             <label for="priceProducts" class="label-price input-label"
-            >Preço<br />
+            >Preço<br/>
             <input
               
               id="priceProducts"
@@ -306,10 +310,13 @@
               </thead>
 
               <tbody id="table-body-products">
-                
+              
               </tbody>
             </table>
       </section>
+      
+        
+      
     </main>
 
     <footer id="footerWeb" class="col-12">

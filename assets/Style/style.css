@@ -4,10 +4,11 @@ html{
     height: 100%;
     padding: 0;
     margin: 0;
-    
 }
 body{
     margin: 0;
+    
+    
 }
 
 h2{
@@ -27,8 +28,11 @@ legend{
 
 main{
     min-height: 100%;
-    
+
     position: relative;
+}
+.background-loader{
+    filter: brightness(0.5);
 }
 
 

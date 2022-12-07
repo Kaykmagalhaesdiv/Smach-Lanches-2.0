@@ -23,15 +23,20 @@ export let inputCodProduct = document.querySelector("#codeProducts");
 export let inputNameProduct = document.querySelector("#nameProducts")
 export let inputPriceProduct = document.querySelector("#priceProducts");
 
+
+
 export let tableBody = document.getElementById("table-body-products");
-export let tableBodyStatus = document.getElementById("table-body-result");
+export let tableBodyStatus = document.getElementById("table-body-result")
+export let tableBodyRequest = document.querySelector("#table-body")
 export let resultPrice = document.getElementById("result");
 export let dateTimer = document.getElementById('date');
 export let sideProduct = document.querySelector("#sideProduct") 
 export let sideRequest = document.querySelector("#sideRequest")
+export let filterView = document.querySelector("#filter-user")
 
 export let imgBody = document.getElementById("img-hidden");
 export let imgFirstPage = document.getElementById("img-hidden-first");
+export let loader = document.querySelector(".screenLoader");
 
 let dataHora = new Date().toLocaleString();
 dateTimer.innerHTML = dataHora

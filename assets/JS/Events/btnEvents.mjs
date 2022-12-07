@@ -1,9 +1,8 @@
-import { btnVerificar,btnSaveProduct,btnCancelProduct,btnCheckedSideProduct,btnCheckedSideRequest,btnNewRequest,tableBody,
-inputCodProduct,inputNameProduct,inputPriceProduct} from "../variable/variables.mjs";
+import { btnVerificar,btnSaveProduct,btnCancelProduct,btnCheckedSideProduct,btnCheckedSideRequest,btnNewRequest,btnFind,inputFindProduct,inputQuantidade,btnAddProduct} from "../variable/variables.mjs";
 import { checkSelected} from "../Functions/viewPage.mjs";
 import { tradePage } from "../Functions/viewPage.mjs";
-import Product from "../models/products.mjs";
-import { saveProduct,getAllProducts} from "../Functions/methods.mjs";
+import { productServices } from "../script.js";
+import { getProductsForId } from "../Functions/methodsProducts.mjs";
 
 // check if the three inputs are filled in to enable the save product button.
 export function checkInputs(inputs) {
@@ -31,17 +30,22 @@ btnVerificar.forEach(function (input) {
 });
 //---------------*****************************-----------
 
+btnFind.addEventListener("click", async () =>{
+  let valueCodProduct = inputFindProduct.value;
+  getProductsForId(valueCodProduct)
+})
+
+inputQuantidade.addEventListener("keyup",() =>{
+  if(inputQuantidade.value > 0){
+    btnAddProduct.classList.replace("btn-inactive","btn-active")
+    btnAddProduct.removeAttribute('disabled')
+  }else{
+    btnAddProduct.classList.replace("btn-active", "btn-inactive")
+    btnAddProduct.setAttribute("disabled",'true')
+  }
+})
 btnCheckedSideRequest.addEventListener("click", checkSelected)
 btnCheckedSideProduct.addEventListener("click", checkSelected)
-btnNewRequest.addEventListener("click", tradePage);
+btnNewRequest.addEventListener("click", tradePage)
 
-btnSaveProduct.addEventListener("click", async () => {
-    let valueCodeProduct = inputCodProduct.value
-    let valueNameProduct = inputNameProduct.value
-    let valuePriceProduct = inputPriceProduct.value
-    tableBody.innerHTML = '';
-  
-    const newProduct = new Product(valueCodeProduct, valueNameProduct, valuePriceProduct)
-    saveProduct(newProduct)
-    getAllProducts()
-  })
+
