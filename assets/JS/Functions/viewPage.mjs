@@ -1,6 +1,7 @@
-import {btnDelete,btnSave,firstPage,inputFindProduct,resultPrice,secondPage,tableBody,tableBodyStatus,btnCheckedSideProduct,sideProduct,sideRequest,thirdPage,inputProduct,inputPrice,inputQuantidade,tableBodyRequest,imgBody,imgFirstPage} from "../variable/variables.mjs";
+import {inputPriceProduct,inputNameProduct,btnDelete,btnSave,firstPage,inputFindProduct,resultPrice,secondPage,tableBody,tableBodyStatus,btnCheckedSideProduct,sideProduct,sideRequest,thirdPage,inputProduct,inputPrice,inputQuantidade,tableBodyRequest,imgBody,imgFirstPage,filterStatus,filterType, inputCodProduct,btnCancelProduct,btnPrint} from "../variable/variables.mjs";
 import { getAllProducts } from "./methodsProducts.mjs";
 import { viewAllRequests,changerStatus,showBtnDelete,retornaTodos} from "./methodsRequests.mjs";
+import ProductServices from "../services/productServices.mjs";
 export const tradePage = () => {
     firstPage.setAttribute("hidden", "true");
     secondPage.removeAttribute("hidden");
@@ -78,8 +79,6 @@ export let viewBtn = () =>{
 } // Appear and disappear delete button;
 
 export const checkSelected = () => {
-  
-
   if (btnCheckedSideProduct.checked == true) {
     // Botões side!
     sideRequest.setAttribute("hidden", "true")
@@ -100,4 +99,49 @@ export const checkSelected = () => {
     viewAllRequests()
   }
 }
+
+export async function filterSelect(){
+  let orders = await retornaTodos()
+  
+  if(filterType.value != '' && filterType.value != 'type'){
+    orders = orders.filter(item =>{ 
+      return item.tipo.toUpperCase() == filterType.value.toUpperCase()
+    } )
+    viewTable(orders)
+  }
+  if(filterStatus.value != '' && filterStatus.value != 'status'){
+    orders = orders.filter(item =>{ 
+      return item.status.toUpperCase() == filterStatus.value.toUpperCase()
+    } )
+    viewTable(orders)
+  }
+
+  if(filterStatus.value == 'status' || filterType.value == 'type'){
+    return viewTable(orders)
+  }
+  console.log(orders)
+}
+
+export let btnCancelProductt = () =>{
+  inputPrice.value = ""
+  inputNameProduct.value = ""
+  inputPriceProduct.value = ""
+}
+btnCancelProduct.addEventListener("click",btnCancelProductt)
+
+export function printIt() {
+  let contentPrint = document.getElementById('table').innerHTML;
+  var win = window.open();
+  self.focus();
+  win.document.open();
+  win.document.write('<'+'html'+'><'+'body'+'>');
+  win.document.write(contentPrint);
+  win.document.write('<'+'/body'+'><'+'/html'+'>');
+  win.document.close();
+  win.print();
+  win.close();
+} // function responsible for printing the screen when clicking on the "Print" button
+
+btnPrint.addEventListener("click",printIt)
+
 

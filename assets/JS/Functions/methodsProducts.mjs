@@ -1,6 +1,9 @@
 import { viwNewProduct,productServices} from "../script.js";
-import { tableBody,inputCodProduct,inputNameProduct,inputPriceProduct,btnSaveProduct,btnCancelProduct,inputProduct,inputPrice} from "../variable/variables.mjs";
+import { tableBody,inputCodProduct,inputNameProduct,inputPriceProduct,btnSaveProduct,btnCancelProduct,inputProduct,inputPrice,questionDelete,nameOfProduct,btnDeleteProduct,btnCancelQuestion,btnCancelQuestionHeader,filterStatus,filterType} from "../variable/variables.mjs";
 import Product from "../models/products.mjs";
+import { filterSelect} from "./viewPage.mjs";
+
+
 
 export let updateProductBoolean = false;
 export const updateProduct = async (id) =>{ /*Responsible for updating the products! */
@@ -18,6 +21,7 @@ export const updateProduct = async (id) =>{ /*Responsible for updating the produ
     btnCancelProduct.removeAttribute("hidden", "true");
 
 }
+
 btnSaveProduct.addEventListener("click", async () => {  /*button event responsible for saving products or updating products! */
     tableBody.innerHTML = '';
     let valueCodeProduct = inputCodProduct.value
@@ -43,12 +47,15 @@ btnSaveProduct.addEventListener("click", async () => {  /*button event responsib
     getAllProducts()
 })
 
+filterStatus.addEventListener("change",filterSelect)
+filterType.addEventListener("change",filterSelect)
+
 export const deleteProducts = async (id) =>{
   tableBody.innerHTML = ''
   productServices.deleteProduct(id)
   let productsAll = await productServices.getAllProducts()
   viwNewProduct(productsAll)
-  }
+}
 
 export const saveProduct = async (product)  =>{
   await productServices.saveProduct(product)
@@ -66,4 +73,22 @@ export const getProductsForId  = async (id) =>{
     inputPrice.value = values.preco;
   })
 }
+
+let productId = []
+export const viewQuestionDelete = async (id) =>{
+  productId = await productServices.getProductForId(id)
+  questionDelete.removeAttribute("hidden")
+  console.log(productId)
+  nameOfProduct.innerHTML = `<h3>${productId[0].nome}</h3>`
+}
+
+btnDeleteProduct.addEventListener("click", async () =>{
+  questionDelete.setAttribute("hidden","true")
+  await deleteProducts(productId[0].id)
+  productId = []
+})
+
+btnCancelQuestion.addEventListener("click",() =>{
+  questionDelete.setAttribute("hidden","true")
+})
 

@@ -1,6 +1,11 @@
+
 export let firstPage = document.getElementById("requests");
 export let secondPage = document.getElementById("newRequest");
 export let thirdPage = document.querySelector("#products")
+export let questionDelete = document.querySelector(".deleteQuestion")
+export let nameOfProduct = document.querySelector(".nameOfProduct")
+export let filterType = document.querySelector("#filter-types")
+export let filterStatus = document.querySelector("#filter-status")
 
 export let btnNewRequest = document.getElementById("btn-novo-pedido");
 export let btnFind = document.getElementById("btn-find");
@@ -12,8 +17,11 @@ export let btnPrint = document.querySelector("#print")
 export let btnCheckedSideRequest = document.querySelector("#requestButton");
 export let btnCheckedSideProduct = document.querySelector("#productButton");
 export let btnSaveProduct = document.querySelector("#save-product")
-export let btnCancelProduct = document.querySelector(".btn-cancel-product");
+export let btnCancelProduct = document.querySelector(".btn-cancel-product")
 export let btnVerificar = document.querySelectorAll(".btnVerificar")
+export let btnDeleteProduct = document.querySelector(".btnDelete")
+export let btnCancelQuestion  = document.querySelector(".btn-cancel-question")
+export let btnCancelQuestionHeader = document.querySelector(".btn-cancel-question-header")
 
 export let inputQuantidade = document.getElementById("amount-product");
 export let inputProduct = document.getElementById("name-product");
@@ -37,6 +45,7 @@ export let filterView = document.querySelector("#filter-user")
 export let imgBody = document.getElementById("img-hidden");
 export let imgFirstPage = document.getElementById("img-hidden-first");
 export let loader = document.querySelector(".screenLoader");
+export let loaderDelete = document.querySelector(".loaderDelete")
 
 let dataHora = new Date().toLocaleString();
 dateTimer.innerHTML = dataHora

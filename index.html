@@ -31,10 +31,10 @@
       <span class="loader"></span>
     </div>
 
-    <div class="deleteQuestion">
+    <div class="deleteQuestion" hidden>
       <div class="delete">
         <div class="headerDeleteQuestion">
-          <h4>Excluir produto <button><img src="/assets/img/excluir.svg" alt=""></button></h4>
+          <h4>Excluir produto <button class="btn-cancel-question-header"><img src="/assets/img/excluir.svg" alt=""></button></h4>
         </div>
         <div class="questionOfDelete">
           <div class="messageDelete">
@@ -42,12 +42,12 @@
           </div>
 
           <div class="nameOfProduct">
-            <h3>Hamburguer</h3>
+            
           </div>
         </div>
 
         <div class="deleteBtn">
-          <button class="btn-config btn-cancel">Não, cancelar</button>
+          <button class="btn-config btn-cancel btn-cancel-question">Não, cancelar</button>
           <button class="btn-config btn-active btnDelete" ><img src="./assets/img/Adicionar.svg" alt="">Sim, excluir</button>
         </div>
       </div>
@@ -104,13 +104,13 @@
 
             <div class="filters">
               <select id="filter-types" class="btn-config filter_types" >
-                <option value="">Tipos</option>
+                <option value="type">Tipos</option>
                 <option value="Salao">Salão</option>
                 <option value="Delivery">Delivery</option>
               </select>
 
               <select id="filter-status" class="btn-config filter_status">
-                <option value="">Status</option>
+                <option value="status">Status</option>
                 <option value="Recebido">Recebido</option>
                 <option value="Pronto">Pronto</option>
                 <option value="Entregue">Entregue</option>

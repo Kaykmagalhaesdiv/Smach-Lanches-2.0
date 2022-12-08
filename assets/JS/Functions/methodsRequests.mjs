@@ -114,7 +114,6 @@ let deleteRequest = async () =>{
         filterView.removeAttribute("hidden")
         imgFirstPage.removeAttribute("hidden")
         viewAllRequests()
-        
     })
     
 }

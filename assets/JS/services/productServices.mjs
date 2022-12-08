@@ -85,7 +85,6 @@ export default class ProductServices{
             alertify.error('Produto não encontrado!');
         }else{
             inputQuantidade.removeAttribute("disabled")
-            alertify.success("Produto encontrado!")
         }
         const dataId = await productForId.json();
        
