@@ -138,3 +138,104 @@
     cursor: pointer ;
     width: 11rem !important;
 }
+
+.deleteQuestion{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.delete{
+    display: flex;
+    flex-direction: column;
+    width: 521px;
+    height: 292px;
+    background-color: #FFF;
+    border-radius: 8px;
+}
+
+
+.headerDeleteQuestion{
+    position: relative;
+    padding: 14px;
+    font-family: "Inter",sans-serif;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 32px;
+}
+.headerDeleteQuestion button{
+    position: absolute;
+    right: 16px;
+    border: none;
+    background-color: #FFF;
+}
+
+.headerDeleteQuestion h4{
+    font-size: 1.2rem;
+    color: var(--label-grey);
+    line-height: 15px;
+}
+
+.questionOfDelete{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+.messageDelete{
+    align-self: center;
+}
+
+.messageDelete h2{
+    font-family: "Barlow",sans-serif;
+    font-weight: 500;
+    color: var(--label-grey);
+    font-size: 28px;
+}
+
+.nameOfProduct{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 200px;
+    height: 48px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 52px;
+}
+
+.nameOfProduct h3{
+    font-family: "Inter",sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+}
+.deleteBtn{
+    height: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.deleteBtn .btn-config{
+    height: 31px;
+    width: 133px;
+}
+
+.deleteBtn .btn-config{
+    font-size: 1rem;
+}
+
+.deleteBtn .btnDelete img{
+    margin-right: 10px;
+}
+
+.deleteBtn .btnDelete{
+    margin-right: 1rem;
+}

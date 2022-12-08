@@ -1,4 +1,5 @@
 const URL = "http://localhost:3000";
+import {inputQuantidade} from "../variable/variables.mjs"
 
 export default class RequestsServices{
    async saveNewRequest(product){
@@ -11,6 +12,7 @@ export default class RequestsServices{
             return response.json().then(jsonData =>{
                 return jsonData
             })
+            
         }
         throw new Error("Erro ao salvar pedido!")
     }).catch(err =>{

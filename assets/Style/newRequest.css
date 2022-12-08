@@ -206,4 +206,7 @@ input[name="code-product"]{
     color: #666666;
 }
 
+#amount-product[disabled]{
+    cursor: not-allowed;
+}
 

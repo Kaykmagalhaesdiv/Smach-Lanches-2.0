@@ -5,14 +5,13 @@ export const tradePage = () => {
     firstPage.setAttribute("hidden", "true");
     secondPage.removeAttribute("hidden");
     resultPrice.setAttribute("hidden", "true");
-  
+
     tableBodyStatus.innerHTML = "";
     inputFindProduct.value = "";
     inputPrice.value = ""
     inputProduct.value = ""
     inputQuantidade.value = ""
     tableBody.innerHTML = "";
-    tableBodyRequest.innerHTML = ""
     imgBody.removeAttribute("hidden")
     btnSave.removeAttribute('class', 'btn-save-inactive')
     btnSave.setAttribute('class', 'btn-save btn-config btn-save-inactive');

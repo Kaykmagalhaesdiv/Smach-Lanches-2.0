@@ -1,5 +1,5 @@
 const URL = "http://localhost:3000"
-import { loader,btnAddProduct} from "../variable/variables.mjs"
+import { loader,btnAddProduct,inputQuantidade} from "../variable/variables.mjs"
 
 export default class ProductServices{
   async saveProduct(product){
@@ -84,6 +84,7 @@ export default class ProductServices{
         if(!productForId.ok){
             alertify.error('Produto não encontrado!');
         }else{
+            inputQuantidade.removeAttribute("disabled")
             alertify.success("Produto encontrado!")
         }
         const dataId = await productForId.json();

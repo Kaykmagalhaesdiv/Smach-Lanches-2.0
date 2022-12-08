@@ -30,6 +30,29 @@
     <div class="screenLoader" hidden>
       <span class="loader"></span>
     </div>
+
+    <div class="deleteQuestion">
+      <div class="delete">
+        <div class="headerDeleteQuestion">
+          <h4>Excluir produto <button><img src="/assets/img/excluir.svg" alt=""></button></h4>
+        </div>
+        <div class="questionOfDelete">
+          <div class="messageDelete">
+            <h2>Quer mesmo excluir o produto?</h2>
+          </div>
+
+          <div class="nameOfProduct">
+            <h3>Hamburguer</h3>
+          </div>
+        </div>
+
+        <div class="deleteBtn">
+          <button class="btn-config btn-cancel">Não, cancelar</button>
+          <button class="btn-config btn-active btnDelete" ><img src="./assets/img/Adicionar.svg" alt="">Sim, excluir</button>
+        </div>
+      </div>
+    </div>
+
     <main id="principal" class="col-12 row">
       <div class="content col-3 row">
         <aside id="menu_lateral">
@@ -178,7 +201,7 @@
               <div class="inputs-content">
                 <label for="amount" class="label-amount input-label"
                   >Quantidade<br />
-                  <input id="amount-product" name="code-product" type="number" placeholder="0"
+                  <input disabled id="amount-product" name="code-product" type="number" placeholder="0" 
                   />
                 </label>
 

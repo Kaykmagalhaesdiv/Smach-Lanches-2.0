@@ -3,7 +3,7 @@ import Requests from "../models/requests.mjs";
 import { btnAddProduct, inputFindProduct, inputQuantidade, inputProduct, inputPrice, resultPrice, tableBodyRequest, btnSave, imgBody,secondPage,firstPage,imgFirstPage,btnDelete,filterView} from "../variable/variables.mjs"
 import { viewTable } from "./viewPage.mjs";
 import Status from "../models/status.mjs"
-let arrRequestTable = []
+let arrRequestTable = [];
 let arrRequestOrder = [];
 
 
@@ -22,7 +22,12 @@ export default btnAddProduct.addEventListener("click", async () => {
 
     btnSave.removeAttribute("disabled")
     btnSave.classList.replace("btn-save-inactive", "btn-save-active")
-
+    inputFindProduct.value = "";
+    inputQuantidade.value = "";
+    inputProduct.value = "";
+    inputPrice.value = "";
+    btnAddProduct.setAttribute("disabled","true")
+    btnAddProduct.classList.replace("btn-active","btn-inactive")
     viewOrderRequest()
 
 })
@@ -47,6 +52,13 @@ btnSave.addEventListener("click", async () => {
     let newRequest = new Requests(IdRequest, type, arrRequestOrder)
     let saveNewRequest = await requestServices.saveNewRequest(newRequest)
     arrRequestOrder = [];
+    arrRequestTable = [];
+    inputQuantidade.setAttribute("disabled","true")
+    btnAddProduct.setAttribute("disabled","true")
+    btnAddProduct.classList.replace("btn-active","btn-inactive")
+    tableBodyRequest.innerHTML = "";
+    
+    alertify.success("Pedido Salvo!")
     viewAllRequests()
     secondPage.setAttribute("hidden","true");
     firstPage.removeAttribute("hidden")
